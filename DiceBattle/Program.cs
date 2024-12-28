@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static DxLibDLL.DX;
-using Domain;
-using System.Diagnostics.Eventing.Reader;
+using Domain.DataObject;
 
 namespace DiceBattle
 {
