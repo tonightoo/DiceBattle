@@ -4,7 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static DxLibDLL.DX;
-using Domain.DataObject;
+using Domain.DataObjects;
+using DiceBattle.Controllers;
+using Application.UseCases.Battle;
+using Application.IPresenters;
+using DiceBattle.Presenters;
+using DiceBattle.Views;
 
 namespace DiceBattle
 {
@@ -27,12 +32,11 @@ namespace DiceBattle
                 DxLib_Init();
 
                 int[] keys = new int[256];
-                int[] playerAttack = { 1, 2, 3, 4, 5, 6 };
-                int[] enemyAttack = { 1, 1, 1, 1, 1, 10 };
-                Unit player = new Unit("Player", playerAttack, 20);
-                Unit enemy = new Unit("Enemy", enemyAttack, 20);
-                bool playerTurn = true;
-                Random dice = new Random();
+                ViewUpdater updater = new ViewUpdater();
+                BattleView view = new BattleView(updater);
+                IBattlePresenter presenter = new BattlePresenter(updater);
+                IBattleUseCase useCase = new BattleUseCase(presenter);
+                IController controller = new BattleController(useCase);
 
                 while (ProcessMessage() == 0)
                 {
@@ -47,38 +51,10 @@ namespace DiceBattle
 
                     if (keys[KEY_INPUT_RETURN] == 1)
                     {
-
-                        if (playerTurn)
-                        {
-                            int rollResult = dice.Next(5);
-                            int damage = player.Attacks[rollResult];
-                            enemy.Hp -= damage;
-                            playerTurn = false;
-                        }
-                        else
-                        {
-                            int rollResult = dice.Next(5);
-                            int damage = enemy.Attacks[rollResult];
-                            player.Hp -= damage;
-                            playerTurn = true;
-                        }
-
-
+                        controller.Decision();
                     }
 
-                    if (player.Hp <= 0)
-                    {
-                        DrawString(300, 400, "enemy win", GetColor(255, 255, 255));
-                    }
-                    else if (enemy.Hp <= 0)
-                    {
-                        DrawString(300, 400, "player win", GetColor(255, 255, 255));
-                    }
-                    else
-                    {
-                        DrawString(400, 400, $"{player.Name}:{player.Hp}", GetColor(255, 255, 255));
-                        DrawString(100, 400, $"{enemy.Name}:{enemy.Hp}", GetColor(255, 255, 255));
-                    }
+                    controller.ScreenUpdate();
 
                     ScreenFlip();
                 }

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.DataObject
+namespace Domain.DataObjects
 {
     public class Unit
     {

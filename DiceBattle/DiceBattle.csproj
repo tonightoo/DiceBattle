@@ -39,7 +39,15 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\BattleController.cs" />
+    <Compile Include="Controllers\IController.cs" />
+    <Compile Include="Presenters\BattlePresenter.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="Views\BattleView.cs" />
+    <Compile Include="Views\Graph.cs" />
+    <Compile Include="Views\Text.cs" />
+    <Compile Include="Views\ViewModel.cs" />
+    <Compile Include="Views\ViewUpdater.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="DxLibWDotNet">
@@ -47,6 +55,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Application\Application.csproj">
+      <Project>{d157f9b3-c7df-48ba-a272-7dd38abe276e}</Project>
+      <Name>Application</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Domain\Domain.csproj">
       <Project>{0c561ca6-c572-4a62-9127-4ffcc52e9267}</Project>
       <Name>Domain</Name>
