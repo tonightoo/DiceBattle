@@ -41,11 +41,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants.cs" />
     <Compile Include="IPresenters\IBattlePresenter.cs" />
+    <Compile Include="IPresenters\ITitlePresenter.cs" />
     <Compile Include="Repositories\IUnitRepository.cs" />
+    <Compile Include="Scenes\BattleScene.cs" />
+    <Compile Include="Scenes\EndScene.cs" />
+    <Compile Include="Scenes\IScene.cs" />
+    <Compile Include="Scenes\TitleScene.cs" />
     <Compile Include="UseCases\Battle\BattleUseCase.cs" />
     <Compile Include="UseCases\Battle\IBattleUseCase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UseCases\Facade\IUseCaseFacade.cs" />
+    <Compile Include="UseCases\Facade\UseCaseFacade.cs" />
+    <Compile Include="UseCases\Title\ITitleUseCase.cs" />
+    <Compile Include="UseCases\Title\TitleUseCase.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj">
