@@ -17,7 +17,7 @@ namespace DiceBattle.Presenters
 
         public BattlePresenter(ViewUpdater updater)
         {
-            _updater= updater;
+            _updater = updater;
         }
 
 

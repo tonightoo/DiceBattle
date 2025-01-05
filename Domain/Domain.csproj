@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataObjects\BattleField.cs" />
+    <Compile Include="DataObjects\Game.cs" />
+    <Compile Include="DataObjects\TitleMenu.cs" />
     <Compile Include="DataObjects\Unit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

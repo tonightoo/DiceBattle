@@ -10,6 +10,9 @@ using Application.UseCases.Battle;
 using Application.IPresenters;
 using DiceBattle.Presenters;
 using DiceBattle.Views;
+using Application.UseCases.Facade;
+using Application.Scenes;
+using Application.UseCases.Title;
 
 namespace DiceBattle
 {
@@ -33,10 +36,20 @@ namespace DiceBattle
 
                 int[] keys = new int[256];
                 ViewUpdater updater = new ViewUpdater();
-                BattleView view = new BattleView(updater);
-                IBattlePresenter presenter = new BattlePresenter(updater);
-                IBattleUseCase useCase = new BattleUseCase(presenter);
-                IController controller = new BattleController(useCase);
+                View view = new View(updater);
+                //IBattlePresenter presenter = new BattlePresenter(updater);
+                //IBattleUseCase useCase = new BattleUseCase(presenter);
+                //IController controller = new BattleController(useCase);
+
+                IBattlePresenter battlePresenter = new BattlePresenter(updater);
+                ITitlePresenter titlePresenter = new TitlePresenter(updater);
+                IBattleUseCase battleUseCase = new BattleUseCase(battlePresenter);
+                ITitleUseCase titleUseCase = new TitleUseCase(titlePresenter);
+                IScene battleScene = new BattleScene(battleUseCase);
+                IScene firstScene = new TitleScene(titleUseCase, battleScene);
+                IUseCaseFacade useCase = new UseCaseFacade(firstScene);
+                IController controller = new Controller(useCase);
+
 
                 while (ProcessMessage() == 0)
                 {
@@ -52,6 +65,16 @@ namespace DiceBattle
                     if (keys[KEY_INPUT_RETURN] == 1)
                     {
                         controller.Decision();
+                    }
+
+                    if (keys[KEY_INPUT_K] == 1)
+                    {
+                        controller.Up();
+                    }
+
+                    if (keys[KEY_INPUT_J] == 1)
+                    {
+                        controller.Down();
                     }
 
                     controller.ScreenUpdate();

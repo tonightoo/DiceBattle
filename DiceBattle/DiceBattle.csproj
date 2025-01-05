@@ -40,10 +40,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\BattleController.cs" />
+    <Compile Include="Controllers\Controller.cs" />
     <Compile Include="Controllers\IController.cs" />
     <Compile Include="Presenters\BattlePresenter.cs" />
+    <Compile Include="Presenters\TitlePresenter.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Views\BattleView.cs" />
+    <Compile Include="Views\View.cs" />
     <Compile Include="Views\Graph.cs" />
     <Compile Include="Views\Text.cs" />
     <Compile Include="Views\ViewModel.cs" />

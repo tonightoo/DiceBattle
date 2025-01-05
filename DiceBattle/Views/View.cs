@@ -3,13 +3,13 @@ using static DxLibDLL.DX;
 
 namespace DiceBattle.Views
 {
-    internal class BattleView
+    internal class View
         : IDisposable
     {
 
         private readonly ViewUpdater _viewUpdater;
 
-        internal BattleView(ViewUpdater viewUpdater)
+        internal View(ViewUpdater viewUpdater)
         {
             viewUpdater.Update += Update;
             _viewUpdater = viewUpdater;
