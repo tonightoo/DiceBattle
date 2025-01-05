@@ -3,6 +3,7 @@ using System.CodeDom;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,6 +15,10 @@ namespace Domain.DataObjects
         public readonly int MaxHp;
 
         private int _hp;
+
+        public readonly string FilePath;
+
+        public int GraphicHandle;
 
         public int Hp
         {
@@ -39,7 +44,7 @@ namespace Domain.DataObjects
 
         public readonly int[] Attacks;
 
-        public Unit(string name, int[] attacks, int maxHp)
+        public Unit(string name, int[] attacks, int maxHp, string filePath = "")
         {
             if (string.IsNullOrWhiteSpace(name))
             {
@@ -59,6 +64,7 @@ namespace Domain.DataObjects
             Attacks = attacks;
             MaxHp = maxHp;
             Hp = maxHp;
+            FilePath = filePath;
         }
     }
 }
