@@ -27,12 +27,17 @@ namespace DiceBattle.Presenters
 
             foreach (string menuText in menu.GetMenu())
             {
+
+                int x;
+                int y = Constants.Title.FIRST_MENU_Y + Constants.Title.MENU_MARGIN * count;
                 if (count == menu.CurrentIndex + 1)
                 {
-                    viewModel.texts.Add(new Text("▶", 50, 100 * count, GetColor(255, 255, 255)));
+                    x = Constants.Title.MENU_ARROW_X;
+                    viewModel.texts.Add(new Text(Constants.Title.ARROW, x, y, Constants.Color.WHITE));
                 }
 
-                viewModel.texts.Add(new Text(menuText, 100, 100 * count, GetColor(255, 255, 255)));
+                x = Constants.Title.MENU_X;
+                viewModel.texts.Add(new Text(menuText, x, y, Constants.Color.WHITE));
 
                 count += 1;
             }
