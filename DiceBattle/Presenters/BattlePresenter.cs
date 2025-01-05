@@ -28,11 +28,13 @@ namespace DiceBattle.Presenters
             _viewModel = new ViewModel();
 
 
-            //Player status
+            //Player
             WriteStatus(field.Player, Constants.Battle.PLAYER_X);
+            DrawUnitImage(field.Player, new Point(200, 400));
 
-            //Enemy status
+            //Enemy
             WriteStatus(field.Enemy, Constants.Battle.ENEMY_X);
+            DrawUnitImage(field.Enemy, new Point(480, 400));
 
             //Winner
             WriteWinner(field);
@@ -48,11 +50,11 @@ namespace DiceBattle.Presenters
         {
             if (field.Player.Hp <= 0)
             {
-                _viewModel.texts.Add(new Text($"Enemy win", Constants.Battle.WIN_POSITION.X, Constants.Battle.WIN_POSITION.Y, Constants.Color.WHITE));
+                _viewModel.texts.Add(new Text($"{field.Enemy.Name} win", Constants.Battle.WIN_POSITION.X, Constants.Battle.WIN_POSITION.Y, Constants.Color.WHITE));
             }
             else if (field.Enemy.Hp <= 0)
             {
-                _viewModel.texts.Add(new Text($"Player win", Constants.Battle.WIN_POSITION.X, Constants.Battle.WIN_POSITION.Y, Constants.Color.WHITE));
+                _viewModel.texts.Add(new Text($"{field.Player.Name} win", Constants.Battle.WIN_POSITION.X, Constants.Battle.WIN_POSITION.Y, Constants.Color.WHITE));
             }
         }
 
@@ -66,6 +68,12 @@ namespace DiceBattle.Presenters
                 int y = Constants.Battle.FIRST_ATTACK_TEXT_Y + Constants.Battle.ATTACK_TEXT_MARGIN * i;
                 _viewModel.texts.Add(new Text($"{i + 1} : {unit.Attacks[i]}", x, y, Constants.Color.WHITE));
             }
+        }
+
+        private void DrawUnitImage(Unit unit, Point position)
+        {
+            Graph unitGraph = new Graph(unit.GraphicHandle, position.X, position.Y, 128, 128);
+            _viewModel.graphs.Add(unitGraph);
         }
 
     }

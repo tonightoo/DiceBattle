@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Domain.DataObjects;
 using Application.IPresenters;
+using Application.Repositories;
 
 namespace Application.UseCases.Battle
 {
@@ -21,9 +22,12 @@ namespace Application.UseCases.Battle
 
         private IBattlePresenter _presenter;
 
-        public BattleUseCase(IBattlePresenter presenter)
+        private IUnitRepository _unitRepository;
+
+        public BattleUseCase(IBattlePresenter presenter, IUnitRepository repository)
         {
             _presenter = presenter;
+            _unitRepository = repository;
             Initialize();
         }
 
@@ -44,10 +48,12 @@ namespace Application.UseCases.Battle
 
         public void Initialize()
         {
-            int[] playerAttack = { 1, 2, 3, 4, 5, 6 };
-            int[] enemyAttack = { 1, 1, 1, 1, 1, 10 };
-            Unit player = new Unit("Player", playerAttack, 20);
-            Unit enemy = new Unit("Enemy", enemyAttack, 20);
+            //int[] playerAttack = { 1, 2, 3, 4, 5, 6 };
+            //int[] enemyAttack = { 1, 1, 1, 1, 1, 10 };
+            //Unit player = new Unit("Player", playerAttack, 20, ".\\Assets\\Test1.png");
+            //Unit enemy = new Unit("Enemy", enemyAttack, 20,  ".\\Assets\\Test2.png");
+            Unit player = _unitRepository.GetUnitById(1);
+            Unit enemy = _unitRepository.GetUnitById(2);
             _dice = new Random();
             _field = new BattleField(player, enemy);
         }

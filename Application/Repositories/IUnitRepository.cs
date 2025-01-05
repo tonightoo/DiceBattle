@@ -10,8 +10,11 @@ namespace Application.Repositories
     public interface IUnitRepository
     {
 
-        List<Unit> GetAllUnits();
+        Dictionary<int, Unit> GetAllUnits();
 
         Unit GetUnitById(int id);
+
+        void Save(Unit unit, int id);
+
     }
 }

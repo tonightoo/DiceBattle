@@ -14,6 +14,9 @@ using DiceBattle.Views;
 using Application.UseCases.Facade;
 using Application.Scenes;
 using Application.UseCases.Title;
+using Application.Repositories;
+using InMemoryInfra;
+using System.Runtime.CompilerServices;
 
 namespace DiceBattle
 {
@@ -35,6 +38,8 @@ namespace DiceBattle
 
                 DxLib_Init();
 
+
+
                 int[] keys = new int[256];
                 ViewUpdater updater = new ViewUpdater();
                 View view = new View(updater);
@@ -42,9 +47,13 @@ namespace DiceBattle
                 //IBattleUseCase useCase = new BattleUseCase(presenter);
                 //IController controller = new BattleController(useCase);
 
+                IUnitRepository srcRepository = new InMemoryUnitRepository();
+                IUnitRepository repository = new InMemoryUnitRepository();
+                LoadGraphs(srcRepository, repository);
+
                 IBattlePresenter battlePresenter = new BattlePresenter(updater);
                 ITitlePresenter titlePresenter = new TitlePresenter(updater);
-                IBattleUseCase battleUseCase = new BattleUseCase(battlePresenter);
+                IBattleUseCase battleUseCase = new BattleUseCase(battlePresenter, repository);
                 ITitleUseCase titleUseCase = new TitleUseCase(titlePresenter);
                 IScene battleScene = new BattleScene(battleUseCase);
                 IScene firstScene = new TitleScene(titleUseCase, battleScene);
@@ -95,5 +104,17 @@ namespace DiceBattle
             }
         }
 
+        private static void LoadGraphs(IUnitRepository src, IUnitRepository dst)
+        {
+            Dictionary<int, Unit> units = src.GetAllUnits();
+            foreach (int key in units.Keys)
+            {
+                Unit unit = units[key]; 
+                unit.GraphicHandle = LoadGraph(unit.FilePath);
+                dst.Save(unit, key);
+            }
+        }
     }
+
+
 }
