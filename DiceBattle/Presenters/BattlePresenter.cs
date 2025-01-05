@@ -15,6 +15,8 @@ namespace DiceBattle.Presenters
 
         private ViewUpdater _updater;
 
+        private ViewModel _viewModel;
+
         public BattlePresenter(ViewUpdater updater)
         {
             _updater = updater;
@@ -23,23 +25,47 @@ namespace DiceBattle.Presenters
 
         public void UpdateScreen(BattleField field)
         {
-            ViewModel viewModel = new ViewModel();
+            _viewModel = new ViewModel();
 
+
+            //Player status
+            WriteStatus(field.Player, Constants.Battle.PLAYER_X);
+
+            //Enemy status
+            WriteStatus(field.Enemy, Constants.Battle.ENEMY_X);
+
+            //Winner
+            WriteWinner(field);
+
+            //
+            //_viewModel.texts.Add(new Text($"{field.Player.Name}:{field.Player.Hp}", 400, 400, GetColor(255, 255, 255)));
+            //_viewModel.texts.Add(new Text($"{field.Enemy.Name}:{field.Enemy.Hp}", 100, 400, GetColor(255, 255, 255)));
+
+            _updater.CreateViewModel = _viewModel;
+        }
+
+        private void WriteWinner(BattleField field)
+        {
             if (field.Player.Hp <= 0)
             {
-                viewModel.texts.Add(new Text("enemy win", 300, 400, GetColor(255, 255, 255)));
+                _viewModel.texts.Add(new Text($"Enemy win", Constants.Battle.WIN_POSITION.X, Constants.Battle.WIN_POSITION.Y, Constants.Color.WHITE));
             }
             else if (field.Enemy.Hp <= 0)
             {
-                viewModel.texts.Add(new Text("player win", 300, 400, GetColor(255, 255, 255)));
+                _viewModel.texts.Add(new Text($"Player win", Constants.Battle.WIN_POSITION.X, Constants.Battle.WIN_POSITION.Y, Constants.Color.WHITE));
             }
-            else
-            {
-                viewModel.texts.Add(new Text($"{field.Player.Name}:{field.Player.Hp}", 400, 400, GetColor(255, 255, 255)));
-                viewModel.texts.Add(new Text($"{field.Enemy.Name}:{field.Enemy.Hp}", 100, 400, GetColor(255, 255, 255)));
-            }
+        }
 
-            _updater.CreateViewModel = viewModel;
+        private void WriteStatus(Unit unit, int x) 
+        {
+            _viewModel.texts.Add(new Text($"{unit.Name}", x, Constants.Battle.NAME_TEXT_Y, Constants.Color.WHITE));
+            _viewModel.texts.Add(new Text($"HP : {unit.Hp}", x, Constants.Battle.HP_TEXT_Y, Constants.Color.WHITE));
+
+            for (int i = 0; i < unit.Attacks.Count(); i++)
+            {
+                int y = Constants.Battle.FIRST_ATTACK_TEXT_Y + Constants.Battle.ATTACK_TEXT_MARGIN * i;
+                _viewModel.texts.Add(new Text($"{i + 1} : {unit.Attacks[i]}", x, y, Constants.Color.WHITE));
+            }
         }
 
     }
