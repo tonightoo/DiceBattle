@@ -50,6 +50,11 @@ namespace DiceBattle.Views
                 DrawString(text.x, text.y, text.content, text.color);
             }
 
+            foreach (Box box in viewModel.boxes)
+            {
+                DrawBox(box.X1, box.Y1, box.X2, box.Y2, box.Color, box.FillFlag);
+            }
+
         }
 
     }

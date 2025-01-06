@@ -18,7 +18,6 @@ namespace DiceBattle.Views
 
         public byte transparency;
 
-
         internal Graph(int graphId, int x, int y, int width, int height, bool isTranslucent = false, byte transparency = 128)
         {
             this.graphId = graphId;

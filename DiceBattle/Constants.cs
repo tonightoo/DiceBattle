@@ -41,6 +41,12 @@ namespace DiceBattle
 
             internal static readonly int HP_TEXT_Y = 80;
 
+            internal static readonly int HP_BAR_Y = 120;
+
+            internal static readonly int HP_BAR_HEIGHT = 10;
+
+            internal static readonly int HP_BAR_WIDTH = 200;
+
             internal static readonly int FIRST_ATTACK_TEXT_Y = 150;
 
             internal static readonly int ATTACK_TEXT_MARGIN = 30;

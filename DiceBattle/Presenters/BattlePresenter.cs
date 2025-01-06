@@ -60,12 +60,18 @@ namespace DiceBattle.Presenters
 
         private void WriteStatus(Unit unit, int x) 
         {
+            int y;
             _viewModel.texts.Add(new Text($"{unit.Name}", x, Constants.Battle.NAME_TEXT_Y, Constants.Color.WHITE));
             _viewModel.texts.Add(new Text($"HP : {unit.Hp}", x, Constants.Battle.HP_TEXT_Y, Constants.Color.WHITE));
 
+            y = Constants.Battle.HP_BAR_Y;
+            _viewModel.boxes.Add(new Box(x, y, x + Constants.Battle.HP_BAR_WIDTH, y + Constants.Battle.HP_BAR_HEIGHT, Constants.Color.WHITE, FALSE));
+            float percentage = (float)unit.Hp / (float)unit.MaxHp;
+            _viewModel.boxes.Add(new Box(x, y, x + (int)(Constants.Battle.HP_BAR_WIDTH * percentage), y + Constants.Battle.HP_BAR_HEIGHT, Constants.Color.WHITE, TRUE));
+
             for (int i = 0; i < unit.Attacks.Count(); i++)
             {
-                int y = Constants.Battle.FIRST_ATTACK_TEXT_Y + Constants.Battle.ATTACK_TEXT_MARGIN * i;
+                y = Constants.Battle.FIRST_ATTACK_TEXT_Y + Constants.Battle.ATTACK_TEXT_MARGIN * i;
                 _viewModel.texts.Add(new Text($"{i + 1} : {unit.Attacks[i]}", x, y, Constants.Color.WHITE));
             }
         }

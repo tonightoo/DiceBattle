@@ -46,6 +46,7 @@
     <Compile Include="Presenters\BattlePresenter.cs" />
     <Compile Include="Presenters\TitlePresenter.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="Views\Box.cs" />
     <Compile Include="Views\View.cs" />
     <Compile Include="Views\Graph.cs" />
     <Compile Include="Views\Text.cs" />
@@ -65,6 +66,10 @@
     <ProjectReference Include="..\Domain\Domain.csproj">
       <Project>{0c561ca6-c572-4a62-9127-4ffcc52e9267}</Project>
       <Name>Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\InMemoryInfra\InMemoryInfra.csproj">
+      <Project>{fd35aca5-6da8-496a-a119-e00548861863}</Project>
+      <Name>InMemoryInfra</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
