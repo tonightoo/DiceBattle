@@ -9,6 +9,8 @@ namespace DiceBattle.Views
 
         public List<Text> texts = new List<Text>();
 
+        public List<Box> boxes = new List<Box>();
+
         public ViewModel()
         {
         }
