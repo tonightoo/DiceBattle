@@ -16,8 +16,6 @@ namespace Application.UseCases.Battle
 
         private BattleField _field;
 
-        private bool _isPlayerTurn;
-
         private Random _dice;
 
         private IBattlePresenter _presenter;
@@ -34,15 +32,15 @@ namespace Application.UseCases.Battle
 
         public void NextTurn()
         {
-            if (_isPlayerTurn)
+            if (_field.IsPlayerTurn)
             {
                 CalcDamage(_field.Player, _field.Enemy);
-                _isPlayerTurn = false;
+                _field.IsPlayerTurn = false;
             }
             else
             {
                 CalcDamage(_field.Enemy, _field.Player);
-                _isPlayerTurn = true;
+                _field.IsPlayerTurn = true;
             }
         }
 
@@ -66,6 +64,7 @@ namespace Application.UseCases.Battle
         private void CalcDamage(Unit attacker, Unit defender)
         {
             int rollResult = _dice.Next(attacker.Attacks.Length - 1);
+            _field.RollResult = rollResult;
             int damage = attacker.Attacks[rollResult];
             defender.Hp -= damage;
         }
