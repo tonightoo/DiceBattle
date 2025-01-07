@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static DxLibDLL.DX;
 using Domain.DataObjects;
+using System.Security.Cryptography;
 
 namespace DiceBattle
 {
@@ -14,6 +15,8 @@ namespace DiceBattle
         internal class Color
         {
             internal static readonly uint WHITE = GetColor(255, 255, 255);
+
+            internal static readonly uint RED = GetColor(255, 0, 0);
         }
 
         internal class Title
@@ -35,7 +38,7 @@ namespace DiceBattle
 
             internal static readonly int ENEMY_X = 700; 
 
-            internal static readonly Point WIN_POSITION = new Point(300, 400);
+            internal static readonly Point WIN_POSITION = new Point(350, 350);
 
             internal static readonly int NAME_TEXT_Y = 50;
 
@@ -51,6 +54,9 @@ namespace DiceBattle
 
             internal static readonly int ATTACK_TEXT_MARGIN = 30;
 
+            internal static readonly int ROLL_RESULT_X = 350;
+
+            internal static readonly int ROLL_RESULT_Y = 100;
         }
 
 

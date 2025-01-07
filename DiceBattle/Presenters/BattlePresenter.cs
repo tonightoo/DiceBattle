@@ -27,14 +27,30 @@ namespace DiceBattle.Presenters
         {
             _viewModel = new ViewModel();
 
+            if (field.RollResult >= 0)
+            {
+                _viewModel.texts.Add(new Text((field.RollResult + 1).ToString(), Constants.Battle.ROLL_RESULT_X, Constants.Battle.ROLL_RESULT_Y, Constants.Color.WHITE));
+            }
 
             //Player
-            WriteStatus(field.Player, Constants.Battle.PLAYER_X);
-            DrawUnitImage(field.Player, new Point(200, 400));
+            if (field.IsPlayerTurn)
+            {
+                WriteStatus(field.Player, Constants.Battle.PLAYER_X, -1);
+                DrawUnitImage(field.Player, new Point(200, 400));
 
-            //Enemy
-            WriteStatus(field.Enemy, Constants.Battle.ENEMY_X);
-            DrawUnitImage(field.Enemy, new Point(480, 400));
+                //Enemy
+                WriteStatus(field.Enemy, Constants.Battle.ENEMY_X, field.RollResult, true);
+                DrawUnitImage(field.Enemy, new Point(480, 400));
+            } 
+            else
+            {
+                WriteStatus(field.Player, Constants.Battle.PLAYER_X, field.RollResult);
+                DrawUnitImage(field.Player, new Point(200, 400));
+
+                //Enemy
+                WriteStatus(field.Enemy, Constants.Battle.ENEMY_X, -1, true);
+                DrawUnitImage(field.Enemy, new Point(480, 400));
+            }
 
             //Winner
             WriteWinner(field);
@@ -58,21 +74,37 @@ namespace DiceBattle.Presenters
             }
         }
 
-        private void WriteStatus(Unit unit, int x) 
+        private void WriteStatus(Unit unit, int x, int useAttackNo, bool isRight = false)
         {
             int y;
             _viewModel.texts.Add(new Text($"{unit.Name}", x, Constants.Battle.NAME_TEXT_Y, Constants.Color.WHITE));
             _viewModel.texts.Add(new Text($"HP : {unit.Hp}", x, Constants.Battle.HP_TEXT_Y, Constants.Color.WHITE));
 
-            y = Constants.Battle.HP_BAR_Y;
-            _viewModel.boxes.Add(new Box(x, y, x + Constants.Battle.HP_BAR_WIDTH, y + Constants.Battle.HP_BAR_HEIGHT, Constants.Color.WHITE, FALSE));
+            int hpX = x;
+            int hpY = Constants.Battle.HP_BAR_Y;
+            if (isRight)
+            {
+                hpX = x - 3 * Constants.Battle.HP_BAR_WIDTH / 4;
+            }
+            _viewModel.boxes.Add(new Box(hpX, hpY, hpX + Constants.Battle.HP_BAR_WIDTH, hpY + Constants.Battle.HP_BAR_HEIGHT, Constants.Color.WHITE, FALSE));
             float percentage = (float)unit.Hp / (float)unit.MaxHp;
-            _viewModel.boxes.Add(new Box(x, y, x + (int)(Constants.Battle.HP_BAR_WIDTH * percentage), y + Constants.Battle.HP_BAR_HEIGHT, Constants.Color.WHITE, TRUE));
+            _viewModel.boxes.Add(new Box(hpX, hpY, hpX + (int)(Constants.Battle.HP_BAR_WIDTH * percentage), hpY + Constants.Battle.HP_BAR_HEIGHT, Constants.Color.WHITE, TRUE));
 
             for (int i = 0; i < unit.Attacks.Count(); i++)
             {
+                uint color;
+                if (i == useAttackNo)
+                {
+                    color = Constants.Color.RED;
+                }
+                else
+                {
+                    color = Constants.Color.WHITE;
+                }
+
+
                 y = Constants.Battle.FIRST_ATTACK_TEXT_Y + Constants.Battle.ATTACK_TEXT_MARGIN * i;
-                _viewModel.texts.Add(new Text($"{i + 1} : {unit.Attacks[i]}", x, y, Constants.Color.WHITE));
+                _viewModel.texts.Add(new Text($"{i + 1} : {unit.Attacks[i]}", x, y, color));
             }
         }
 

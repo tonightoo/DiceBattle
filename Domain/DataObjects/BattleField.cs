@@ -13,9 +13,15 @@ namespace Domain.DataObjects
 
         public Unit Enemy;
 
+        public int RollResult;
+
+        public bool IsPlayerTurn;
+
         public BattleField(Unit player, Unit enemy) {
             Player = player;
             Enemy = enemy;
+            IsPlayerTurn = true;
+            RollResult = -1;
         }
 
 
