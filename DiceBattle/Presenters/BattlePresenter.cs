@@ -33,7 +33,7 @@ namespace DiceBattle.Presenters
             DrawUnitImage(field.Player, new Point(200, 400));
 
             //Enemy
-            WriteStatus(field.Enemy, Constants.Battle.ENEMY_X);
+            WriteStatus(field.Enemy, Constants.Battle.ENEMY_X, true);
             DrawUnitImage(field.Enemy, new Point(480, 400));
 
             //Winner
@@ -58,16 +58,21 @@ namespace DiceBattle.Presenters
             }
         }
 
-        private void WriteStatus(Unit unit, int x) 
+        private void WriteStatus(Unit unit, int x, bool isRight = false) 
         {
             int y;
             _viewModel.texts.Add(new Text($"{unit.Name}", x, Constants.Battle.NAME_TEXT_Y, Constants.Color.WHITE));
             _viewModel.texts.Add(new Text($"HP : {unit.Hp}", x, Constants.Battle.HP_TEXT_Y, Constants.Color.WHITE));
 
-            y = Constants.Battle.HP_BAR_Y;
-            _viewModel.boxes.Add(new Box(x, y, x + Constants.Battle.HP_BAR_WIDTH, y + Constants.Battle.HP_BAR_HEIGHT, Constants.Color.WHITE, FALSE));
+            int hpX = x;
+            int hpY = Constants.Battle.HP_BAR_Y;
+            if (isRight)
+            {
+                hpX = x - 3 * Constants.Battle.HP_BAR_WIDTH / 4;
+            }
+            _viewModel.boxes.Add(new Box(hpX, hpY, hpX + Constants.Battle.HP_BAR_WIDTH, hpY + Constants.Battle.HP_BAR_HEIGHT, Constants.Color.WHITE, FALSE));
             float percentage = (float)unit.Hp / (float)unit.MaxHp;
-            _viewModel.boxes.Add(new Box(x, y, x + (int)(Constants.Battle.HP_BAR_WIDTH * percentage), y + Constants.Battle.HP_BAR_HEIGHT, Constants.Color.WHITE, TRUE));
+            _viewModel.boxes.Add(new Box(hpX, hpY, hpX + (int)(Constants.Battle.HP_BAR_WIDTH * percentage), hpY + Constants.Battle.HP_BAR_HEIGHT, Constants.Color.WHITE, TRUE));
 
             for (int i = 0; i < unit.Attacks.Count(); i++)
             {
