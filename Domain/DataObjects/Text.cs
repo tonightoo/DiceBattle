@@ -1,7 +1,7 @@
 ﻿
-namespace DiceBattle.Views
+namespace Domain.DataObjects
 {
-    internal class Text
+    public class Text
     {
         public string content;
 
@@ -13,7 +13,7 @@ namespace DiceBattle.Views
 
         public int fontSize;
 
-        internal Text(string content, int x, int y, uint color, int fontSize = 18)
+        public Text(string content, int x, int y, uint color, int fontSize = 18)
         {
             this.content = content;
             this.x = x;

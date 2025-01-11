@@ -18,6 +18,8 @@ namespace Domain.DataObjects
 
         public readonly string FilePath;
 
+        public int GraphId;
+
         public int GraphicHandle;
 
         public int Hp
@@ -44,7 +46,7 @@ namespace Domain.DataObjects
 
         public readonly int[] Attacks;
 
-        public Unit(string name, int[] attacks, int maxHp, string filePath = "")
+        public Unit(string name, int[] attacks, int maxHp, int graphId, string filePath = "")
         {
             if (string.IsNullOrWhiteSpace(name))
             {
@@ -64,6 +66,7 @@ namespace Domain.DataObjects
             Attacks = attacks;
             MaxHp = maxHp;
             Hp = maxHp;
+            GraphId = graphId;
             FilePath = filePath;
         }
     }

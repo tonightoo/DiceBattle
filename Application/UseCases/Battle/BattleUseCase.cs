@@ -16,17 +16,12 @@ namespace Application.UseCases.Battle
 
         private BattleField _field;
 
-        private Random _dice;
-
         private IBattlePresenter _presenter;
 
-        private IUnitRepository _unitRepository;
-
-        public BattleUseCase(IBattlePresenter presenter, IUnitRepository repository)
+        public BattleUseCase(IBattlePresenter presenter, BattleField field)
         {
             _presenter = presenter;
-            _unitRepository = repository;
-            Initialize();
+            _field = field;
         }
 
 
@@ -44,18 +39,6 @@ namespace Application.UseCases.Battle
             }
         }
 
-        public void Initialize()
-        {
-            //int[] playerAttack = { 1, 2, 3, 4, 5, 6 };
-            //int[] enemyAttack = { 1, 1, 1, 1, 1, 10 };
-            //Unit player = new Unit("Player", playerAttack, 20, ".\\Assets\\Test1.png");
-            //Unit enemy = new Unit("Enemy", enemyAttack, 20,  ".\\Assets\\Test2.png");
-            Unit player = _unitRepository.GetUnitById(1);
-            Unit enemy = _unitRepository.GetUnitById(2);
-            _dice = new Random();
-            _field = new BattleField(player, enemy);
-        }
-
         public void ScreenUpdate()
         {
             _presenter.UpdateScreen(_field);
@@ -63,7 +46,7 @@ namespace Application.UseCases.Battle
 
         private void CalcDamage(Unit attacker, Unit defender)
         {
-            int rollResult = _dice.Next(attacker.Attacks.Length - 1);
+            int rollResult = _field.Dice.Roll();
             _field.RollResult = rollResult;
             int damage = attacker.Attacks[rollResult];
             defender.Hp -= damage;

@@ -5,9 +5,9 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DiceBattle.Views
+namespace Domain.DataObjects
 {
-    internal class Box
+    public class Box
     {
 
         public int X1;

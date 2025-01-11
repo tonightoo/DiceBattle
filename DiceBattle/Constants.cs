@@ -34,6 +34,10 @@ namespace DiceBattle
 
         internal class Battle
         {
+            internal static readonly int DICE_WIDTH = 80;
+
+            internal static readonly int DICE_HEIGHT = 80;
+            
             internal static readonly int PLAYER_X = 30;
 
             internal static readonly int ENEMY_X = 700; 

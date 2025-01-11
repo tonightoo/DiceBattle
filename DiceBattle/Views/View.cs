@@ -1,4 +1,5 @@
 ﻿using System;
+using Domain.DataObjects;
 using static DxLibDLL.DX;
 
 namespace DiceBattle.Views
