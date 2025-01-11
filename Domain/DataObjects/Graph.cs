@@ -1,7 +1,7 @@
 ﻿
-namespace DiceBattle.Views
+namespace Domain.DataObjects
 {
-    internal class Graph
+    public class Graph
     {
 
         public int graphId;
@@ -18,7 +18,12 @@ namespace DiceBattle.Views
 
         public byte transparency;
 
-        internal Graph(int graphId, int x, int y, int width, int height, bool isTranslucent = false, byte transparency = 128)
+        public Graph(int graphId)
+        {
+            this.graphId = graphId;
+        }
+
+        public Graph(int graphId, int x, int y, int width, int height, bool isTranslucent = false, byte transparency = 128)
         {
             this.graphId = graphId;
             this.x = x;

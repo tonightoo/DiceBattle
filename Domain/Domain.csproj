@@ -42,8 +42,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataObjects\BattleField.cs" />
+    <Compile Include="DataObjects\Box.cs" />
+    <Compile Include="DataObjects\Dice.cs" />
     <Compile Include="DataObjects\Game.cs" />
+    <Compile Include="DataObjects\Graph.cs" />
     <Compile Include="DataObjects\Point.cs" />
+    <Compile Include="DataObjects\Text.cs" />
     <Compile Include="DataObjects\TitleMenu.cs" />
     <Compile Include="DataObjects\Unit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

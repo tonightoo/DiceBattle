@@ -10,8 +10,6 @@ namespace Application.UseCases.Battle
     {
         void NextTurn();
 
-        void Initialize();
-
         void ScreenUpdate();
     }
 }

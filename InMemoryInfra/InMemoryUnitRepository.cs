@@ -18,8 +18,8 @@ namespace InMemoryInfra
             _units = new Dictionary<int, Unit>();
             int[] playerAttack = { 1, 2, 3, 4, 5, 6 };
             int[] enemyAttack = { 1, 1, 1, 1, 1, 10 };
-            Unit player = new Unit("Player", playerAttack, 20, ".\\Assets\\Test1.png");
-            Unit enemy = new Unit("Enemy", enemyAttack, 20,  ".\\Assets\\Test2.png");
+            Unit player = new Unit("Player", playerAttack, 20, 6);
+            Unit enemy = new Unit("Enemy", enemyAttack, 20, 7);
 
             _units.Add(1, player);
             _units.Add(2, enemy);

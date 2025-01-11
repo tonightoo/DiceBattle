@@ -29,7 +29,9 @@ namespace DiceBattle.Presenters
 
             if (field.RollResult >= 0)
             {
-                _viewModel.texts.Add(new Text((field.RollResult + 1).ToString(), Constants.Battle.ROLL_RESULT_X, Constants.Battle.ROLL_RESULT_Y, Constants.Color.WHITE));
+                int handle = field.Dice.GraphicHandles[field.RollResult];
+                Graph graph = new Graph(handle, Constants.Battle.ROLL_RESULT_X, Constants.Battle.ROLL_RESULT_Y, Constants.Battle.DICE_WIDTH, Constants.Battle.DICE_HEIGHT);
+                _viewModel.graphs.Add(graph);
             }
 
             //Player

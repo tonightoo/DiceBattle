@@ -46,10 +46,7 @@
     <Compile Include="Presenters\BattlePresenter.cs" />
     <Compile Include="Presenters\TitlePresenter.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Views\Box.cs" />
     <Compile Include="Views\View.cs" />
-    <Compile Include="Views\Graph.cs" />
-    <Compile Include="Views\Text.cs" />
     <Compile Include="Views\ViewModel.cs" />
     <Compile Include="Views\ViewUpdater.cs" />
   </ItemGroup>
@@ -73,6 +70,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Dice.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\Test1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
