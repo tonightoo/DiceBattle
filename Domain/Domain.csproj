@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataObjects\BattleField.cs" />
+    <Compile Include="DataObjects\BattleState.cs" />
     <Compile Include="DataObjects\Box.cs" />
     <Compile Include="DataObjects\Dice.cs" />
     <Compile Include="DataObjects\Game.cs" />
