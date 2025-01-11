@@ -17,13 +17,13 @@ namespace Domain.DataObjects
 
         public int RollResult;
 
-        public bool IsPlayerTurn;
+        public BattleState State;
 
         public BattleField(Unit player, Unit enemy, Dice dice)
         {
             Player = player;
             Enemy = enemy;
-            IsPlayerTurn = true;
+            State = BattleState.BeforeBattle;
             RollResult = -1;
             Dice = dice;
         }

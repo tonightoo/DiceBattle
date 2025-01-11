@@ -34,25 +34,25 @@ namespace DiceBattle.Presenters
                 _viewModel.graphs.Add(graph);
             }
 
-            //Player
-            if (field.IsPlayerTurn)
+            switch (field.State)
             {
-                WriteStatus(field.Player, Constants.Battle.PLAYER_X, -1);
-                DrawUnitImage(field.Player, new Point(200, 400));
-
-                //Enemy
-                WriteStatus(field.Enemy, Constants.Battle.ENEMY_X, field.RollResult, true);
-                DrawUnitImage(field.Enemy, new Point(480, 400));
-            } 
-            else
-            {
-                WriteStatus(field.Player, Constants.Battle.PLAYER_X, field.RollResult);
-                DrawUnitImage(field.Player, new Point(200, 400));
-
-                //Enemy
-                WriteStatus(field.Enemy, Constants.Battle.ENEMY_X, -1, true);
-                DrawUnitImage(field.Enemy, new Point(480, 400));
+                case BattleState.PlayerRollResult:
+                    WriteStatus(field.Player, Constants.Battle.PLAYER_X, field.RollResult);
+                    WriteStatus(field.Enemy, Constants.Battle.ENEMY_X, -1, true);
+                    break;
+                case BattleState.EnemyRollResult:
+                    WriteStatus(field.Player, Constants.Battle.PLAYER_X, -1);
+                    WriteStatus(field.Enemy, Constants.Battle.ENEMY_X, field.RollResult, true);
+                    break;
+                default:
+                    WriteStatus(field.Player, Constants.Battle.PLAYER_X, -1);
+                    WriteStatus(field.Enemy, Constants.Battle.ENEMY_X, -1, true);
+                    break;
             }
+
+            DrawUnitImage(field.Player, new Point(200, 400));
+            DrawUnitImage(field.Enemy, new Point(480, 400));
+
 
             //Winner
             WriteWinner(field);

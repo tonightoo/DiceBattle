@@ -14,7 +14,7 @@ namespace Domain.DataObjects
 
         public int[] GraphicHandles;
 
-        private int Size;
+        public readonly int Size;
 
         public Random Random = new Random();
 

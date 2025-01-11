@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Domain.DataObjects;
 using Application.IPresenters;
 using Application.Repositories;
+using System.ComponentModel.Design;
 
 namespace Application.UseCases.Battle
 {
@@ -18,29 +19,59 @@ namespace Application.UseCases.Battle
 
         private IBattlePresenter _presenter;
 
+        private int _frameCounter;
+
         public BattleUseCase(IBattlePresenter presenter, BattleField field)
         {
             _presenter = presenter;
             _field = field;
+            _frameCounter = 0;
         }
 
 
         public void NextTurn()
         {
-            if (_field.IsPlayerTurn)
+            switch (_field.State)
             {
-                CalcDamage(_field.Player, _field.Enemy);
-                _field.IsPlayerTurn = false;
-            }
-            else
-            {
-                CalcDamage(_field.Enemy, _field.Player);
-                _field.IsPlayerTurn = true;
+                case BattleState.BeforeBattle:
+                    _field.State = BattleState.PlayerDiceRoll;
+                    break;
+                case BattleState.PlayerDiceRoll:
+                    CalcDamage(_field.Player, _field.Enemy);
+                    _field.State = BattleState.PlayerRollResult;
+                    break;
+                case BattleState.PlayerRollResult:
+                    _field.State = BattleState.EnemyDiceRoll;
+                    break;
+                case BattleState.EnemyDiceRoll:
+                    CalcDamage(_field.Enemy, _field.Player);
+                    _field.State = BattleState.EnemyRollResult;
+                    break;
+                case BattleState.EnemyRollResult:
+                    _field.State = BattleState.PlayerDiceRoll;
+                    break;
             }
         }
 
         public void ScreenUpdate()
         {
+            _frameCounter++;
+            if (_frameCounter > 10)
+            {
+                switch (_field.State)
+                {
+                    case BattleState.PlayerDiceRoll:
+                        _field.RollResult = (_field.RollResult + _field.Dice.Size + 1) % _field.Dice.Size;
+                        break;
+                    case BattleState.EnemyDiceRoll:
+                        _field.RollResult = (_field.RollResult + _field.Dice.Size + 1) % _field.Dice.Size;
+                        break;
+                    default:
+                        break;
+                }
+                _frameCounter = 0;
+            }
+
             _presenter.UpdateScreen(_field);
         }
 
