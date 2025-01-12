@@ -10,46 +10,71 @@ namespace Application.UseCases.Facade
     public class UseCaseFacade : IUseCaseFacade
     {
 
-        private IScene _scene;
+        private Stack<IScene> _sceneStack;
 
         public UseCaseFacade(IScene firstScene) 
         {
-            _scene = firstScene;
+            _sceneStack = new Stack<IScene>();
+            _sceneStack.Push(firstScene);
         }  
 
         public void Cancel()
         {
-            _scene = _scene.Cancel();
+            IScene next = _sceneStack.Peek().Cancel();
+            SetNext(next);
         }
 
         public void Decision()
         {
-            _scene = _scene.Decision();
+            IScene next = _sceneStack.Peek().Decision();
+            SetNext(next);
         }
 
         public void Down()
         {
-            _scene = _scene.Down();
+            IScene next = _sceneStack.Peek().Down();
+            SetNext(next);
         }
 
         public void Left()
         {
-            _scene = _scene.Left();
+            IScene next = _sceneStack.Peek().Left();
+            SetNext(next);
         }
 
         public void Right()
         {
-            _scene = _scene.Right();
+            IScene next = _sceneStack.Peek().Right();
+            SetNext(next);
         }
 
         public void ScreenUpdate()
         {
-            _scene = _scene.ScreenUpdate();
+            IScene next = _sceneStack.Peek().ScreenUpdate();
+            SetNext(next);
         }
 
         public void Up()
         {
-            _scene = _scene.Up();
+            IScene next = _sceneStack.Peek().Up();
+            SetNext(next);
         }
+
+        private void SetNext(IScene next)
+        {
+            if (next == null)
+            {
+                _sceneStack.Pop();
+            } 
+            else
+            {
+                if (next != _sceneStack.Peek())
+                {
+                    _sceneStack.Push(next);
+                }
+            }
+
+        }
+
     }
 }
