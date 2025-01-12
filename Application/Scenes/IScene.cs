@@ -9,6 +9,8 @@ namespace Application.Scenes
     public interface IScene
     {
 
+        IScene Initialize();
+
         IScene Decision();
 
         IScene Cancel();

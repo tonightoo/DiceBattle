@@ -8,6 +8,11 @@ namespace Application.Scenes
 {
     public class EndScene : IScene
     {
+        public IScene Initialize()
+        {
+            return this;
+        }
+
         public IScene Cancel()
         {
             return this;

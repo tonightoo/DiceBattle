@@ -28,6 +28,11 @@ namespace Application.UseCases.Battle
             _frameCounter = 0;
         }
 
+        public IBattleUseCase Initialize()
+        {
+            BattleField field = new BattleField(_field.Player.Initialize(), _field.Enemy.Initialize(), _field.Dice);
+            return new BattleUseCase(_presenter, field);
+        }
 
         public void NextTurn()
         {
