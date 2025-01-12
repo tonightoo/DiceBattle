@@ -13,5 +13,7 @@ namespace Application.UseCases.Battle
         void ScreenUpdate();
 
         bool IsEnd();
+
+        IBattleUseCase Initialize();
     }
 }

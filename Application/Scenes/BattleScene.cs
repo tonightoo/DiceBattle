@@ -17,6 +17,11 @@ namespace Application.Scenes
             _useCase = useCase;
         }
 
+        public IScene Initialize()
+        {
+            return new BattleScene(_useCase.Initialize());
+        }
+
         public IScene Cancel()
         {
             return new EndScene();

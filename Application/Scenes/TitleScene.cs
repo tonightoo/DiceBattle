@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Application.UseCases.Title;
 using Application;
 using Domain.DataObjects;
+using System.Xml.Schema;
 
 namespace Application.Scenes
 {
@@ -22,6 +23,11 @@ namespace Application.Scenes
             _battleScene = scene;
         }
 
+        public IScene Initialize()
+        {
+            return new TitleScene(_useCase, _battleScene.Initialize());
+        }
+
         public IScene Cancel()
         {
             return this;
@@ -31,7 +37,7 @@ namespace Application.Scenes
         {
             if (_useCase.Decision() == Constants.Menu.FIRST_MENU)
             {
-                return _battleScene;
+                return _battleScene.Initialize();
             }
             else if (_useCase.Decision() == Constants.Menu.SECOND_MENU)
             {
