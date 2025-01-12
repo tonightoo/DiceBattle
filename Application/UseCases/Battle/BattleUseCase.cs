@@ -31,6 +31,8 @@ namespace Application.UseCases.Battle
 
         public void NextTurn()
         {
+
+
             switch (_field.State)
             {
                 case BattleState.BeforeBattle:
@@ -58,7 +60,8 @@ namespace Application.UseCases.Battle
             }
 
             //Judge end
-            if (_field.Player.Hp <= 0 || _field.Enemy.Hp <= 0)
+            if ((_field.State == BattleState.PlayerRollResult || _field.State == BattleState.EnemyRollResult) &&
+                (_field.Player.Hp <= 0 ||_field.Enemy.Hp <= 0))
             {
                 _field.State = BattleState.BattleEnd;
             }
