@@ -50,7 +50,19 @@ namespace Application.UseCases.Battle
                 case BattleState.EnemyRollResult:
                     _field.State = BattleState.PlayerDiceRoll;
                     break;
+                case BattleState.BattleEnd:
+                    _field.State = BattleState.GoNextScene;
+                    break;
+                case BattleState.GoNextScene:
+                    break;
             }
+
+            //Judge end
+            if (_field.Player.Hp <= 0 || _field.Enemy.Hp <= 0)
+            {
+                _field.State = BattleState.BattleEnd;
+            }
+
         }
 
         public void ScreenUpdate()
@@ -73,6 +85,11 @@ namespace Application.UseCases.Battle
             }
 
             _presenter.UpdateScreen(_field);
+        }
+
+        public bool IsEnd()
+        {
+            return _field.State == BattleState.GoNextScene;
         }
 
         private void CalcDamage(Unit attacker, Unit defender)

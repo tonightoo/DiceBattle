@@ -11,5 +11,7 @@ namespace Application.UseCases.Battle
         void NextTurn();
 
         void ScreenUpdate();
+
+        bool IsEnd();
     }
 }

@@ -13,5 +13,7 @@ namespace Domain.DataObjects
         PlayerRollResult,
         EnemyDiceRoll,
         EnemyRollResult,
+        BattleEnd,
+        GoNextScene,
     }
 }

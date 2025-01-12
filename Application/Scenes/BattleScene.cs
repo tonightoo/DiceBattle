@@ -25,6 +25,12 @@ namespace Application.Scenes
         public IScene Decision()
         {
             _useCase.NextTurn();
+
+            if (_useCase.IsEnd())
+            {
+                return null;
+            }
+
             return this;
         }
 

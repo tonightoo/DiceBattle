@@ -14,7 +14,7 @@ namespace Application.UseCases.Facade
 
         public UseCaseFacade(IScene firstScene) 
         {
-            _scene= firstScene;
+            _scene = firstScene;
         }  
 
         public void Cancel()
