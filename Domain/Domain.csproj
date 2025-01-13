@@ -47,6 +47,7 @@
     <Compile Include="DataObjects\Dice.cs" />
     <Compile Include="DataObjects\Game.cs" />
     <Compile Include="DataObjects\Graph.cs" />
+    <Compile Include="DataObjects\Image.cs" />
     <Compile Include="DataObjects\Point.cs" />
     <Compile Include="DataObjects\Text.cs" />
     <Compile Include="DataObjects\TitleMenu.cs" />
