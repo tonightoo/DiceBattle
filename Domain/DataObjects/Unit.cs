@@ -12,15 +12,27 @@ namespace Domain.DataObjects
     public class Unit
     {
 
-        public readonly int MaxHp;
+        public int UnitId
+        {
+            get; set;
+        }
+
+        public int MaxHp
+        {
+            get; set;
+        }
 
         private int _hp;
 
-        public readonly string FilePath;
+        public int GraphId
+        {
+            get; set;
+        }
 
-        public int GraphId;
-
-        public int GraphicHandle;
+        public int GraphicHandle
+        {
+            get; set;
+        }
 
         public int Hp
         {
@@ -42,9 +54,15 @@ namespace Domain.DataObjects
             }
         }
 
-        public readonly string Name;
+        public string Name
+        {
+            get; set;
+        }
 
-        public readonly int[] Attacks;
+        public int[] Attacks
+        {
+            get; set;
+        }
 
         public Unit Initialize()
         {
@@ -54,10 +72,10 @@ namespace Domain.DataObjects
                 attacks[i] = Attacks[i];
             }
 
-            return new Unit(Name, attacks, MaxHp, GraphId, FilePath, GraphicHandle);
+            return new Unit(Name, attacks, MaxHp, GraphId, GraphicHandle);
         }
 
-        public Unit(string name, int[] attacks, int maxHp, int graphId, string filePath = "", int graphicHandle = 0)
+        public Unit(string name, int[] attacks, int maxHp, int graphId, int graphicHandle = 0)
         {
             if (string.IsNullOrWhiteSpace(name))
             {
@@ -78,7 +96,6 @@ namespace Domain.DataObjects
             MaxHp = maxHp;
             Hp = maxHp;
             GraphId = graphId;
-            FilePath = filePath;
             GraphicHandle = graphicHandle;
         }
     }

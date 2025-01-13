@@ -15,7 +15,8 @@ using Application.UseCases.Facade;
 using Application.Scenes;
 using Application.UseCases.Title;
 using Application.Repositories;
-using InMemoryInfra;
+using InMemoryInfra.ImageRepository;
+using InMemoryInfra.UnitRepository;
 using System.Runtime.CompilerServices;
 
 namespace DiceBattle
@@ -47,13 +48,13 @@ namespace DiceBattle
                 //IBattleUseCase useCase = new BattleUseCase(presenter);
                 //IController controller = new BattleController(useCase);
 
-                IImageRepository fileImageRepository = new FileImageRepository(".\\Assets\\ImageRepository.csv");
+                IImageRepository fileImageRepository = new FileImageRepository(".\\Assets\\ImageRepository.json");
                 IImageRepository imageRepository = new InMemoryImageRepository();
                 LoadGraphs(fileImageRepository,imageRepository);
 
-                IUnitRepository srcRepository = new InMemoryUnitRepository();
+                IUnitRepository fileUnitRepository = new FileUnitRepository(".\\Assets\\UnitRepository.json");
                 IUnitRepository unitRepository = new InMemoryUnitRepository();
-                LoadUnits(srcRepository, unitRepository, imageRepository);
+                LoadUnits(fileUnitRepository, unitRepository, imageRepository);
 
                 IBattlePresenter battlePresenter = new BattlePresenter(updater);
                 ITitlePresenter titlePresenter = new TitlePresenter(updater);

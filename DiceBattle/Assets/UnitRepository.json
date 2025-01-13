@@ -1,0 +1,20 @@
+[
+  {
+    "UnitId": 1,
+    "MaxHp": 20,
+    "GraphId": 1,
+    "GraphicHandle": 0,
+    "Hp": 20,
+    "Name": "Player",
+    "Attacks": [ 1, 2, 3, 4, 5, 6 ]
+  },
+  {
+    "UnitId": 2,
+    "MaxHp": 20,
+    "GraphId": 2,
+    "GraphicHandle": 0,
+    "Hp": 20,
+    "Name": "Enemy",
+    "Attacks":  [1, 1, 1, 1, 1, 10]
+  }
+]

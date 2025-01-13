@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.IO;
-using CsvSerializer;
 using Domain.DataObjects;
+using System.Text.Json;
 
-namespace InMemoryInfra
+namespace InMemoryInfra.ImageRepository
 {
     public class FileImageRepository : IImageRepository
     {
@@ -25,11 +25,14 @@ namespace InMemoryInfra
 
         private void Initialize()
         {
-            Deserializer deserializer = new Deserializer(_filePath);
-            List<Image> list = deserializer.DeserializeObject<Image>();
-            foreach (Image image in list)
+
+            using (FileStream fs = new FileStream(_filePath, FileMode.Open))
             {
-                _repository.Add(image.ImageId, image);
+                IEnumerable<Image> list = JsonSerializer.Deserialize<IEnumerable<Image>>(fs);
+                foreach (Image image in list)
+                {
+                    _repository.Add(image.ImageId, image);
+                }
             }
         }
 
@@ -40,8 +43,7 @@ namespace InMemoryInfra
 
             using (FileStream fs = new FileStream(_filePath, FileMode.Append))
             {
-                Serializer serializer = new Serializer();
-                serializer.SerializeObjects<Image>(list, fs);
+                JsonSerializer.Serialize<IEnumerable<Image>>(fs, list);
             }
         }
 
