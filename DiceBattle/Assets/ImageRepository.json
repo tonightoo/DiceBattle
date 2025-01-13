@@ -11,7 +11,7 @@
   },
   {
     "ImageId": 1,
-    "FilePath": ".\\Assets\\Test1.png",
+    "FilePath": ".\\Assets\\001_slime.png",
     "AllNum": 1,
     "XNum": 1,
     "YNum": 1,
@@ -21,7 +21,7 @@
   },
   {
     "ImageId": 2,
-    "FilePath": ".\\Assets\\Test2.png",
+    "FilePath": ".\\Assets\\002_goblin.png",
     "AllNum": 1,
     "XNum": 1,
     "YNum": 1,
