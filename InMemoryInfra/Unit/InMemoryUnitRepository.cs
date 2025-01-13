@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Application.Repositories;
 using Domain.DataObjects;
 
-namespace InMemoryInfra
+namespace InMemoryInfra.UnitRepository
 {
     public class InMemoryUnitRepository : IUnitRepository
     {

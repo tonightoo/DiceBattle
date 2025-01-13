@@ -1,0 +1,32 @@
+[
+  {
+    "ImageId": 0,
+    "FilePath": ".\\Assets\\Dice.png",
+    "AllNum": 6,
+    "XNum": 6,
+    "YNum": 1,
+    "Width": 128,
+    "Height": 128,
+    "GraphicHandles": null
+  },
+  {
+    "ImageId": 1,
+    "FilePath": ".\\Assets\\Test1.png",
+    "AllNum": 1,
+    "XNum": 1,
+    "YNum": 1,
+    "Width": 128,
+    "Height": 128,
+    "GraphicHandles": null
+  },
+  {
+    "ImageId": 2,
+    "FilePath": ".\\Assets\\Test2.png",
+    "AllNum": 1,
+    "XNum": 1,
+    "YNum": 1,
+    "Width": 128,
+    "Height": 128,
+    "GraphicHandles": null
+  }
+]
