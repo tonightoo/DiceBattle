@@ -15,17 +15,17 @@ namespace Application.Scenes
 
         private ITitleUseCase _useCase;
 
-        private IScene _battleScene;
+        private IScene _nextScene;
 
         public TitleScene(ITitleUseCase useCase, IScene scene) 
         {
             _useCase = useCase;
-            _battleScene = scene;
+            _nextScene = scene;
         }
 
         public IScene Initialize()
         {
-            return new TitleScene(_useCase, _battleScene.Initialize());
+            return new TitleScene(_useCase, _nextScene.Initialize());
         }
 
         public IScene Cancel()
@@ -37,7 +37,7 @@ namespace Application.Scenes
         {
             if (_useCase.Decision() == Constants.Menu.FIRST_MENU)
             {
-                return _battleScene.Initialize();
+                return _nextScene.Initialize();
             }
             else if (_useCase.Decision() == Constants.Menu.SECOND_MENU)
             {

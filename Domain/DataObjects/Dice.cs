@@ -10,10 +10,6 @@ namespace Domain.DataObjects
     public class Dice
     {
 
-        public int[] GraphIds;
-
-        public int[] GraphicHandles;
-
         public readonly int Size;
 
         public Random Random = new Random();
@@ -21,8 +17,6 @@ namespace Domain.DataObjects
         public Dice(int size) 
         {
             Size = size;
-            GraphIds = new int[size];
-            GraphicHandles = new int[size];
         }
 
         public int Roll()

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.DataObjects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,6 @@ namespace Application.UseCases.Battle
 
         bool IsEnd();
 
-        IBattleUseCase Initialize();
+        IBattleUseCase Initialize(BattleField field);
     }
 }

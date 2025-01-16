@@ -1,20 +1,20 @@
 [
   {
     "UnitId": 1,
-    "MaxHp": 20,
+    "MaxHp": 5,
     "GraphId": 1,
     "GraphicHandle": 0,
-    "Hp": 20,
-    "Name": "Player",
-    "Attacks": [ 1, 2, 3, 4, 5, 6 ]
+    "Hp": 5,
+    "Name": "Slime",
+    "Attacks": [ 1, 1, 1, 1, 0, 2 ]
   },
   {
     "UnitId": 2,
-    "MaxHp": 20,
+    "MaxHp": 6,
     "GraphId": 2,
     "GraphicHandle": 0,
-    "Hp": 20,
-    "Name": "Enemy",
-    "Attacks":  [1, 1, 1, 1, 1, 10]
+    "Hp": 6,
+    "Name": "Goblin",
+    "Attacks":  [1, 0, 0, 2, 1, 2]
   }
 ]

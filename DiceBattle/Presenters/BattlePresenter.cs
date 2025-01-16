@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Application.IPresenters;
+using Application.Repositories;
 using DiceBattle.Views;
 using Domain.DataObjects;
 using static DxLibDLL.DX;
@@ -17,9 +18,12 @@ namespace DiceBattle.Presenters
 
         private ViewModel _viewModel;
 
-        public BattlePresenter(ViewUpdater updater)
+        private IImageRepository _imageRepository;
+
+        public BattlePresenter(ViewUpdater updater, IImageRepository imageRepository)
         {
             _updater = updater;
+            _imageRepository = imageRepository;
         }
 
 
@@ -29,7 +33,8 @@ namespace DiceBattle.Presenters
 
             if (field.RollResult >= 0)
             {
-                int handle = field.Dice.GraphicHandles[field.RollResult];
+                int[] handles = _imageRepository.Get(Constants.DICE_GRAPH_ID).GraphicHandles;
+                int handle = handles[field.RollResult];
                 Graph graph = new Graph(handle, Constants.Battle.ROLL_RESULT_X, Constants.Battle.ROLL_RESULT_Y, Constants.Battle.DICE_WIDTH, Constants.Battle.DICE_HEIGHT);
                 _viewModel.graphs.Add(graph);
             }
@@ -112,7 +117,8 @@ namespace DiceBattle.Presenters
 
         private void DrawUnitImage(Unit unit, Point position)
         {
-            Graph unitGraph = new Graph(unit.GraphicHandle, position.X, position.Y, 128, 128);
+            int handle = _imageRepository.Get(unit.GraphId).GraphicHandles[0];
+            Graph unitGraph = new Graph(handle, position.X, position.Y, 128, 128);
             _viewModel.graphs.Add(unitGraph);
         }
 

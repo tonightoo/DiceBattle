@@ -1,7 +1,9 @@
 ﻿using Application.UseCases.Battle;
+using Domain.DataObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,12 +21,12 @@ namespace Application.Scenes
 
         public IScene Initialize()
         {
-            return new BattleScene(_useCase.Initialize());
+            return new BattleScene(_useCase);
         }
 
         public IScene Cancel()
         {
-            return new EndScene();
+            return null;
         }
 
         public IScene Decision()

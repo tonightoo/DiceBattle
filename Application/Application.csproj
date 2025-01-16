@@ -44,12 +44,14 @@
     <Compile Include="Constants.cs" />
     <Compile Include="IPresenters\IBattlePresenter.cs" />
     <Compile Include="IPresenters\ITitlePresenter.cs" />
+    <Compile Include="IPresenters\IUnitSelectPresenter.cs" />
     <Compile Include="Repositories\IImageRepository.cs" />
     <Compile Include="Repositories\IUnitRepository.cs" />
     <Compile Include="Scenes\BattleScene.cs" />
     <Compile Include="Scenes\EndScene.cs" />
     <Compile Include="Scenes\IScene.cs" />
     <Compile Include="Scenes\TitleScene.cs" />
+    <Compile Include="Scenes\UnitSelectScene.cs" />
     <Compile Include="UseCases\Battle\BattleUseCase.cs" />
     <Compile Include="UseCases\Battle\IBattleUseCase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -57,6 +59,8 @@
     <Compile Include="UseCases\Facade\UseCaseFacade.cs" />
     <Compile Include="UseCases\Title\ITitleUseCase.cs" />
     <Compile Include="UseCases\Title\TitleUseCase.cs" />
+    <Compile Include="UseCases\UnitSelect\IUnitSelectUseCase.cs" />
+    <Compile Include="UseCases\UnitSelect\UnitSelectUseCase.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj">
