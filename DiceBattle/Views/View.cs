@@ -27,15 +27,15 @@ namespace DiceBattle.Views
             foreach (Graph graph in viewModel.graphs)
             {
                 //半透明設定なら半透明で描画
-                if (graph.isTranslucent)
+                if (graph.IsTranslucent)
                 {
                     SetDrawBlendMode(DX_BLENDMODE_ALPHA, 122);
                 }
 
-                DrawExtendGraph(graph.x, graph.y, graph.x + graph.width, graph.y + graph.height, graph.graphId, 1);
+                DrawExtendGraph(graph.X, graph.Y, graph.X + graph.Width, graph.Y + graph.Height, graph.GraphicHandle, 1);
 
                 //半透明設定ならもとの設定に戻す
-                if (graph.isTranslucent)
+                if (graph.IsTranslucent)
                 {
                     SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
                 }

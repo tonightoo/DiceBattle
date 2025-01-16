@@ -12,6 +12,8 @@ namespace DiceBattle
     internal class Constants
     {
 
+        internal static readonly int DICE_GRAPH_ID = 0;
+
         internal class Color
         {
             internal static readonly uint WHITE = GetColor(255, 255, 255);

@@ -4,34 +4,34 @@ namespace Domain.DataObjects
     public class Graph
     {
 
-        public int graphId;
+        public int GraphicHandle;
 
-        public int x;
+        public int X;
 
-        public int y;
+        public int Y;
 
-        public int width;
+        public int Width;
 
-        public int height;
+        public int Height;
 
-        public bool isTranslucent;
+        public bool IsTranslucent;
 
-        public byte transparency;
+        public byte Transparency;
 
-        public Graph(int graphId)
+        public Graph(int handle)
         {
-            this.graphId = graphId;
+            this.GraphicHandle = handle;
         }
 
-        public Graph(int graphId, int x, int y, int width, int height, bool isTranslucent = false, byte transparency = 128)
+        public Graph(int handle, int x, int y, int width, int height, bool isTranslucent = false, byte transparency = 128)
         {
-            this.graphId = graphId;
-            this.x = x;
-            this.y = y;
-            this.width = width;
-            this.height = height;
-            this.isTranslucent = isTranslucent;
-            this.transparency = transparency;
+            this.GraphicHandle = handle;
+            this.X = x;
+            this.Y = y;
+            this.Width = width;
+            this.Height = height;
+            this.IsTranslucent = isTranslucent;
+            this.Transparency = transparency;
         }
 
     }

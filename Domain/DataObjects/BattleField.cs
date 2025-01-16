@@ -28,6 +28,11 @@ namespace Domain.DataObjects
             Dice = dice;
         }
 
+        public BattleField Initialize()
+        {
+            return new BattleField(Player.Initialize(), Enemy.Initialize(), Dice);
+        }
+
 
     }
 }

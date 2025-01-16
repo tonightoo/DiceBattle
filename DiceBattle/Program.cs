@@ -18,6 +18,7 @@ using Application.Repositories;
 using InMemoryInfra.ImageRepository;
 using InMemoryInfra.UnitRepository;
 using System.Runtime.CompilerServices;
+using Application.UseCases.UnitSelect;
 
 namespace DiceBattle
 {
@@ -53,17 +54,25 @@ namespace DiceBattle
                 LoadGraphs(fileImageRepository,imageRepository);
 
                 IUnitRepository fileUnitRepository = new FileUnitRepository(".\\Assets\\UnitRepository.json");
-                IUnitRepository unitRepository = new InMemoryUnitRepository();
-                LoadUnits(fileUnitRepository, unitRepository, imageRepository);
+                //IUnitRepository unitRepository = new InMemoryUnitRepository();
+                //LoadUnits(fileUnitRepository, unitRepository, imageRepository);
 
-                IBattlePresenter battlePresenter = new BattlePresenter(updater);
+                IBattlePresenter battlePresenter = new BattlePresenter(updater, imageRepository);
                 ITitlePresenter titlePresenter = new TitlePresenter(updater);
 
-                BattleField battleField = CreateBattleField(unitRepository, imageRepository);
-                IBattleUseCase battleUseCase = new BattleUseCase(battlePresenter, battleField);
+                //BattleField battleField = CreateBattleField(unitRepository, imageRepository);
+                IBattleUseCase battleUseCase = new BattleUseCase(battlePresenter);
+
                 ITitleUseCase titleUseCase = new TitleUseCase(titlePresenter);
                 IScene battleScene = new BattleScene(battleUseCase);
-                IScene firstScene = new TitleScene(titleUseCase, battleScene);
+                //IScene firstScene = new TitleScene(titleUseCase, battleScene);
+
+                UnitSelection unitSelection = new UnitSelection(4, 2);
+                IUnitSelectPresenter selectPresenter = new UnitSelectPresenter(updater, fileImageRepository);
+                IUnitSelectUseCase selectUseCase = new UnitSelectUseCase(fileUnitRepository, selectPresenter, unitSelection);
+                IScene selectScene = new UnitSelectScene(selectUseCase, battleUseCase);
+
+                IScene firstScene = new TitleScene(titleUseCase, selectScene);
                 IUseCaseFacade useCase = new UseCaseFacade(firstScene);
                 IController controller = new Controller(useCase);
 
@@ -79,19 +88,38 @@ namespace DiceBattle
                         break;
                     }
 
+                    if (keys[KEY_INPUT_BACK] == 1)
+                    {
+                        controller.Cancel();
+                    }
+
                     if (keys[KEY_INPUT_RETURN] == 1)
                     {
                         controller.Decision();
                     }
 
-                    if (keys[KEY_INPUT_K] == 1)
+                    if (keys[KEY_INPUT_K] == 1 ||
+                        keys[KEY_INPUT_UP] == 1)
                     {
                         controller.Up();
                     }
 
-                    if (keys[KEY_INPUT_J] == 1)
+                    if (keys[KEY_INPUT_J] == 1 ||
+                        keys[KEY_INPUT_DOWN] == 1)
                     {
                         controller.Down();
+                    }
+
+                    if (keys[KEY_INPUT_H] == 1 ||
+                        keys[KEY_INPUT_LEFT] == 1)
+                    {
+                        controller.Left();
+                    }
+
+                    if (keys[KEY_INPUT_L] == 1 ||
+                        keys[KEY_INPUT_RIGHT] == 1)
+                    {
+                        controller.Right();
                     }
 
                     controller.ScreenUpdate();
@@ -132,42 +160,7 @@ namespace DiceBattle
                 dst.Add(image.ImageId, image);
             }
 
-            //int count = 0;
-            //int[] graphicHandles = new int[6];
-            //LoadDivGraph(".\\Assets\\Dice.png", 6, 6, 1, 128, 128, graphicHandles);
-            //foreach (int id in graphicHandles)
-            //{
-            //    repository.Add(count, id);
-            //    count++;
-            //}
-            //repository.Add(count, LoadGraph(".\\Assets\\Test1.png"));
-            //count++;
-            //repository.Add(count, LoadGraph(".\\Assets\\Test2.png"));
-            //count++;
-
         }
-
-        private static void LoadUnits(IUnitRepository src, IUnitRepository dst, IImageRepository graphRepository)
-        {
-            Dictionary<int, Unit> units = src.GetAllUnits();
-            foreach (int key in units.Keys)
-            {
-                Unit unit = units[key];
-                unit.GraphicHandle = graphRepository.Get(unit.GraphId).GraphicHandles[0];
-                dst.Save(unit, key);
-            }
-        }
-
-        private static BattleField CreateBattleField(IUnitRepository unitRepository, IImageRepository graphRepository)
-        {
-            Unit player = unitRepository.GetUnitById(1);
-            Unit enemy = unitRepository.GetUnitById(2);
-            Dice dice = new Dice(6);
-            dice.GraphicHandles = graphRepository.Get(0).GraphicHandles;
-
-            return new BattleField(player, enemy, dice);
-        }
-
 
     }
 

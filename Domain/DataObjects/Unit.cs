@@ -29,11 +29,6 @@ namespace Domain.DataObjects
             get; set;
         }
 
-        public int GraphicHandle
-        {
-            get; set;
-        }
-
         public int Hp
         {
             get => _hp;
@@ -72,10 +67,10 @@ namespace Domain.DataObjects
                 attacks[i] = Attacks[i];
             }
 
-            return new Unit(Name, attacks, MaxHp, GraphId, GraphicHandle);
+            return new Unit(Name, attacks, MaxHp, GraphId);
         }
 
-        public Unit(string name, int[] attacks, int maxHp, int graphId, int graphicHandle = 0)
+        public Unit(string name, int[] attacks, int maxHp, int graphId)
         {
             if (string.IsNullOrWhiteSpace(name))
             {
@@ -96,7 +91,6 @@ namespace Domain.DataObjects
             MaxHp = maxHp;
             Hp = maxHp;
             GraphId = graphId;
-            GraphicHandle = graphicHandle;
         }
     }
 }

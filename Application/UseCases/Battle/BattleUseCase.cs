@@ -21,6 +21,11 @@ namespace Application.UseCases.Battle
 
         private int _frameCounter;
 
+        public BattleUseCase(IBattlePresenter presenter)
+        {
+            _presenter = presenter;
+            _frameCounter = 0;
+        }
         public BattleUseCase(IBattlePresenter presenter, BattleField field)
         {
             _presenter = presenter;
@@ -28,9 +33,9 @@ namespace Application.UseCases.Battle
             _frameCounter = 0;
         }
 
-        public IBattleUseCase Initialize()
+
+        public IBattleUseCase Initialize(BattleField field)
         {
-            BattleField field = new BattleField(_field.Player.Initialize(), _field.Enemy.Initialize(), _field.Dice);
             return new BattleUseCase(_presenter, field);
         }
 

@@ -52,6 +52,7 @@
     <Compile Include="DataObjects\Text.cs" />
     <Compile Include="DataObjects\TitleMenu.cs" />
     <Compile Include="DataObjects\Unit.cs" />
+    <Compile Include="DataObjects\UnitSelection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
