@@ -30,5 +30,13 @@
     "Value": 2,
     "Target": 2,
     "Type": 0
+  },
+  {
+    "Name": "Rest",
+    "Id": 4,
+    "Description": "Rest",
+    "Value": 1,
+    "Target": 1,
+    "Type": 1
   }
 ]

@@ -15,6 +15,15 @@
     "GraphicHandle": 0,
     "Hp": 6,
     "Name": "Goblin",
-    "AttackIds":  [1, 0, 0, 3, 1, 3]
+    "AttackIds": [ 1, 0, 0, 3, 1, 3 ]
+  },
+  {
+    "UnitId": 3,
+    "MaxHp": 10,
+    "GraphId": 3,
+    "GraphicHandle": 0,
+    "Hp": 10,
+    "Name": "Baby dragon",
+    "AttackIds": [ 1, 1, 4, 4, 1, 4 ]
   }
 ]
