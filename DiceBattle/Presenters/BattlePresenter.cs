@@ -91,7 +91,7 @@ namespace DiceBattle.Presenters
             int hpY = Constants.Battle.HP_BAR_Y;
             if (isRight)
             {
-                hpX = x - 3 * Constants.Battle.HP_BAR_WIDTH / 4;
+                hpX = x - Constants.Battle.ENEMY_HP_MARGIN;
             }
             _viewModel.boxes.Add(new Box(hpX, hpY, hpX + Constants.Battle.HP_BAR_WIDTH, hpY + Constants.Battle.HP_BAR_HEIGHT, Constants.Color.WHITE, FALSE));
             float percentage = (float)unit.Hp / (float)unit.MaxHp;
@@ -111,7 +111,7 @@ namespace DiceBattle.Presenters
 
 
                 y = Constants.Battle.FIRST_ATTACK_TEXT_Y + Constants.Battle.ATTACK_TEXT_MARGIN * i;
-                _viewModel.texts.Add(new Text($"{i + 1} : {unit.Attacks[i]}", x, y, color));
+                _viewModel.texts.Add(new Text($"{i + 1} : {unit.Attacks[i].Name}", x, y, color));
             }
         }
 

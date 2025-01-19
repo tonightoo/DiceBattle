@@ -46,6 +46,7 @@
     <Compile Include="IPresenters\ITitlePresenter.cs" />
     <Compile Include="IPresenters\IUnitSelectPresenter.cs" />
     <Compile Include="Repositories\IImageRepository.cs" />
+    <Compile Include="Repositories\ISkillRepository.cs" />
     <Compile Include="Repositories\IUnitRepository.cs" />
     <Compile Include="Scenes\BattleScene.cs" />
     <Compile Include="Scenes\EndScene.cs" />
@@ -67,6 +68,9 @@
       <Project>{0c561ca6-c572-4a62-9127-4ffcc52e9267}</Project>
       <Name>Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

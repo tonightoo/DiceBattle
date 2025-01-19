@@ -6,7 +6,7 @@
     "GraphicHandle": 0,
     "Hp": 5,
     "Name": "Slime",
-    "Attacks": [ 1, 1, 1, 1, 0, 2 ]
+    "AttackIds": [ 1, 1, 1, 1, 0, 2 ]
   },
   {
     "UnitId": 2,
@@ -15,6 +15,6 @@
     "GraphicHandle": 0,
     "Hp": 6,
     "Name": "Goblin",
-    "Attacks":  [1, 0, 0, 2, 1, 2]
+    "AttackIds":  [1, 0, 0, 3, 1, 3]
   }
 ]

@@ -109,7 +109,7 @@ namespace Application.UseCases.Battle
         {
             int rollResult = _field.Dice.Roll();
             _field.RollResult = rollResult;
-            int damage = attacker.Attacks[rollResult];
+            int damage = attacker.Attacks[rollResult].Value;
             defender.Hp -= damage;
         }
 

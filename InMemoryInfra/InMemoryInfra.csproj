@@ -73,10 +73,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Image\FileImageRepository.cs" />
-    <Compile Include="Unit\FileUnitRepository.cs" />
-    <Compile Include="Image\InMemoryImageRepository.cs" />
-    <Compile Include="Unit\InMemoryUnitRepository.cs" />
+    <Compile Include="ImageRepository\FileImageRepository.cs" />
+    <Compile Include="SkillRepository\FileSkillRepository.cs" />
+    <Compile Include="SkillRepository\InMemorySkillRepository.cs" />
+    <Compile Include="UnitRepository\FileUnitRepository.cs" />
+    <Compile Include="ImageRepository\InMemoryImageRepository.cs" />
+    <Compile Include="UnitRepository\InMemoryUnitRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
