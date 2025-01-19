@@ -42,7 +42,9 @@ namespace DiceBattle
             
             internal static readonly int PLAYER_X = 30;
 
-            internal static readonly int ENEMY_X = 700; 
+            internal static readonly int ENEMY_X = 650;
+
+            internal static readonly int ENEMY_HP_MARGIN = 100;
 
             internal static readonly Point WIN_POSITION = new Point(350, 350);
 

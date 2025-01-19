@@ -19,6 +19,7 @@ using InMemoryInfra.ImageRepository;
 using InMemoryInfra.UnitRepository;
 using System.Runtime.CompilerServices;
 using Application.UseCases.UnitSelect;
+using InMemoryInfra.SkillRepository;
 
 namespace DiceBattle
 {
@@ -53,7 +54,9 @@ namespace DiceBattle
                 IImageRepository imageRepository = new InMemoryImageRepository();
                 LoadGraphs(fileImageRepository,imageRepository);
 
-                IUnitRepository fileUnitRepository = new FileUnitRepository(".\\Assets\\UnitRepository.json");
+                ISkillRepository skillRepository = new FileSkillRepository(".\\Assets\\SkillRepository.json");
+
+                IUnitRepository fileUnitRepository = new FileUnitRepository(".\\Assets\\UnitRepository.json", skillRepository);
                 //IUnitRepository unitRepository = new InMemoryUnitRepository();
                 //LoadUnits(fileUnitRepository, unitRepository, imageRepository);
 

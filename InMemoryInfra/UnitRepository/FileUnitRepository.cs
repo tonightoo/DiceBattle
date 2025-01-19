@@ -17,10 +17,13 @@ namespace InMemoryInfra.UnitRepository
 
         private string _filePath;
 
-        public FileUnitRepository(string filePath)
+        private ISkillRepository _skillRepository;
+
+        public FileUnitRepository(string filePath, ISkillRepository skillRepository)
         {
             _repository = new InMemoryUnitRepository();
             _filePath = filePath;
+            _skillRepository = skillRepository;
             Initialize();
         }
 
@@ -31,6 +34,12 @@ namespace InMemoryInfra.UnitRepository
                 IEnumerable<Unit> list = JsonSerializer.Deserialize<IEnumerable<Unit>>(fs);
                 foreach (Unit unit in list)
                 {
+
+                    for (int i = 0; i < unit.AttackIds.Length; i++)
+                    {
+                        unit.Attacks[i] = _skillRepository.Get(unit.AttackIds[i]);
+                    }
+
                     _repository.Save(unit, unit.UnitId);
                 }
             }

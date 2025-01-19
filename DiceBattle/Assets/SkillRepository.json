@@ -1,0 +1,34 @@
+﻿[
+  {
+    "Name": "Miss",
+    "Id": 0,
+    "Description": "Miss",
+    "Value": 0,
+    "Target": 2,
+    "Type": 0
+  },
+  {
+    "Name": "Tackle",
+    "Id": 1,
+    "Description": "Tackle",
+    "Value": 1,
+    "Target": 2,
+    "Type": 0
+  },
+  {
+    "Name": "Acid",
+    "Id": 2,
+    "Description": "Acid",
+    "Value": 2,
+    "Target": 2,
+    "Type": 0
+  },
+  {
+    "Name": "Charge",
+    "Id": 3,
+    "Description": "Charge",
+    "Value": 2,
+    "Target": 2,
+    "Type": 0
+  }
+]
