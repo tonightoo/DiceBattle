@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using DiceBattle.Views;
 using static DxLibDLL.DX;
 using Application.IPresenters;
+using Application.Repositories;
 
 namespace DiceBattle.Presenters
 {
@@ -14,9 +15,12 @@ namespace DiceBattle.Presenters
     {
         private ViewUpdater _updater;
 
-        public TitlePresenter(ViewUpdater updater)
+        private IImageRepository _imageRepository;
+
+        public TitlePresenter(ViewUpdater updater, IImageRepository repository)
         {
             _updater = updater;
+            _imageRepository = repository;
         }
 
 
@@ -24,6 +28,13 @@ namespace DiceBattle.Presenters
         {
             ViewModel viewModel = new ViewModel();
             int count = 1;
+
+            int handle = _imageRepository.Get(Constants.Title.TITLE_IMAGE_ID).GraphicHandles[0];
+            viewModel.graphs.Add(new Graph(handle, 
+                                           Constants.Title.TITLE_IMAGE_X, 
+                                           Constants.Title.TITLE_IMAGE_Y, 
+                                           Constants.Title.TITLE_IMAGE_WIDTH, 
+                                           Constants.Title.TITLE_IMAGE_HEIGHT));
 
             foreach (string menuText in menu.GetMenu())
             {

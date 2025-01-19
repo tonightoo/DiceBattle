@@ -23,6 +23,17 @@ namespace DiceBattle
 
         internal class Title
         {
+
+            internal static readonly int TITLE_IMAGE_ID = 1;
+
+            internal static readonly int TITLE_IMAGE_X = 220;
+
+            internal static readonly int TITLE_IMAGE_Y = 75;
+
+            internal static readonly int TITLE_IMAGE_WIDTH = 300;
+
+            internal static readonly int TITLE_IMAGE_HEIGHT = 300;
+
             internal static readonly int MENU_MARGIN = 50;
 
             internal static readonly int FIRST_MENU_Y = 350;
