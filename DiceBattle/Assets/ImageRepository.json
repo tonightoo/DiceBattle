@@ -11,7 +11,7 @@
   },
   {
     "ImageId": 1,
-    "FilePath": ".\\Assets\\001_slime.png",
+    "FilePath": ".\\Assets\\Title.png",
     "AllNum": 1,
     "XNum": 1,
     "YNum": 1,
@@ -21,7 +21,7 @@
   },
   {
     "ImageId": 2,
-    "FilePath": ".\\Assets\\002_goblin.png",
+    "FilePath": ".\\Assets\\001_slime.png",
     "AllNum": 1,
     "XNum": 1,
     "YNum": 1,
@@ -31,6 +31,16 @@
   },
   {
     "ImageId": 3,
+    "FilePath": ".\\Assets\\002_goblin.png",
+    "AllNum": 1,
+    "XNum": 1,
+    "YNum": 1,
+    "Width": 128,
+    "Height": 128,
+    "GraphicHandles": null
+  },
+  {
+    "ImageId": 4,
     "FilePath": ".\\Assets\\003_dragon.png",
     "AllNum": 1,
     "XNum": 1,
@@ -39,4 +49,5 @@
     "Height": 128,
     "GraphicHandles": null
   }
+
 ]

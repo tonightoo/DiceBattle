@@ -61,7 +61,7 @@ namespace DiceBattle
                 //LoadUnits(fileUnitRepository, unitRepository, imageRepository);
 
                 IBattlePresenter battlePresenter = new BattlePresenter(updater, imageRepository);
-                ITitlePresenter titlePresenter = new TitlePresenter(updater);
+                ITitlePresenter titlePresenter = new TitlePresenter(updater, imageRepository);
 
                 //BattleField battleField = CreateBattleField(unitRepository, imageRepository);
                 IBattleUseCase battleUseCase = new BattleUseCase(battlePresenter);

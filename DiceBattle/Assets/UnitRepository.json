@@ -2,7 +2,7 @@
   {
     "UnitId": 1,
     "MaxHp": 5,
-    "GraphId": 1,
+    "GraphId": 2,
     "GraphicHandle": 0,
     "Hp": 5,
     "Name": "Slime",
@@ -11,7 +11,7 @@
   {
     "UnitId": 2,
     "MaxHp": 6,
-    "GraphId": 2,
+    "GraphId": 3,
     "GraphicHandle": 0,
     "Hp": 6,
     "Name": "Goblin",
@@ -20,7 +20,7 @@
   {
     "UnitId": 3,
     "MaxHp": 10,
-    "GraphId": 3,
+    "GraphId": 4,
     "GraphicHandle": 0,
     "Hp": 10,
     "Name": "Baby dragon",
