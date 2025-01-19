@@ -28,5 +28,15 @@
     "Width": 128,
     "Height": 128,
     "GraphicHandles": null
+  },
+  {
+    "ImageId": 3,
+    "FilePath": ".\\Assets\\003_dragon.png",
+    "AllNum": 1,
+    "XNum": 1,
+    "YNum": 1,
+    "Width": 128,
+    "Height": 128,
+    "GraphicHandles": null
   }
 ]

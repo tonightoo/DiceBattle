@@ -109,8 +109,39 @@ namespace Application.UseCases.Battle
         {
             int rollResult = _field.Dice.Roll();
             _field.RollResult = rollResult;
-            int damage = attacker.Attacks[rollResult].Value;
-            defender.Hp -= damage;
+
+            Skill skill = attacker.Attacks[rollResult];
+
+            switch (skill.Target)
+            {
+                case Target.None: 
+                case Target.Own: 
+                    SolveSkill(skill, attacker, attacker); 
+                    break;
+                case Target.Enemy: 
+                    SolveSkill(skill, attacker, defender);
+                    break;
+                default: break;
+            }
+
+        }
+
+        private void SolveSkill(Skill skill, Unit attacker, Unit defender)
+        {
+            int amount = skill.Value;
+
+            switch (skill.Type) 
+            {
+                case SkillType.Damage:
+
+                    defender.Hp -= amount;
+                    break;
+                case SkillType.Heal:
+
+                    defender.Hp += amount;
+                    break;
+            }
+
         }
 
 
