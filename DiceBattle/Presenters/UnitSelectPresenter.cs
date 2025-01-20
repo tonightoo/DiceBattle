@@ -16,6 +16,8 @@ namespace DiceBattle.Presenters
 
         private IImageRepository _imageRepository;
 
+        private ViewModel _viewModel;
+
         public UnitSelectPresenter(ViewUpdater updater, IImageRepository imageRepository)
         {
             _updater = updater;
@@ -24,7 +26,7 @@ namespace DiceBattle.Presenters
 
         public void UpdateScreen(UnitSelection unitSelection)
         {
-            ViewModel viewModel = new ViewModel();
+            _viewModel = new ViewModel();
 
             int yNum = unitSelection.YNum;
             int xNum = unitSelection.XNum;
@@ -45,7 +47,7 @@ namespace DiceBattle.Presenters
                     {
                         int handle = _imageRepository.Get(unit.GraphId).GraphicHandles[0];
                         Graph g = new Graph(handle, x, y, WIDTH, HEIGHT);
-                        viewModel.graphs.Add(g);
+                        _viewModel.graphs.Add(g);
 
                         //Left Unit
                         if (unitSelection.LeftUnitSelection != null &&
@@ -53,9 +55,9 @@ namespace DiceBattle.Presenters
                             unitSelection.LeftUnitSelection.Y == i)
                         {
                             Box b = new Box(x, y, x + WIDTH, y + HEIGHT, Constants.Color.WHITE, 0);
-                            viewModel.boxes.Add(b);
+                            _viewModel.boxes.Add(b);
                             Text t = new Text("1P", x, y - 10, Constants.Color.WHITE);
-                            viewModel.texts.Add(t);
+                            _viewModel.texts.Add(t);
                         }
 
                         //Right Unit
@@ -64,18 +66,18 @@ namespace DiceBattle.Presenters
                             unitSelection.RightUnitSelection.Y == i)
                         {
                             Box b = new Box(x, y, x + WIDTH, y + HEIGHT, Constants.Color.WHITE, 0);
-                            viewModel.boxes.Add(b);
+                            _viewModel.boxes.Add(b);
 
                             if (unitSelection.LeftUnitSelection.X == unitSelection.RightUnitSelection.X &&
                                 unitSelection.LeftUnitSelection.Y == unitSelection.RightUnitSelection.Y)
                             {
                                 Text t = new Text("1P  2P", x, y - 10, Constants.Color.WHITE);
-                                viewModel.texts.Add(t);
+                                _viewModel.texts.Add(t);
                             }
                             else
                             {
                                 Text t = new Text("2P", x, y - 10, Constants.Color.WHITE);
-                                viewModel.texts.Add(t);
+                                _viewModel.texts.Add(t);
                             }
                         }
 
@@ -85,7 +87,9 @@ namespace DiceBattle.Presenters
                             unitSelection.CurrentSelection.Y == i)
                         {
                             Box b = new Box(x, y, x + WIDTH, y + HEIGHT, Constants.Color.RED, 0);
-                            viewModel.boxes.Add(b);
+                            _viewModel.boxes.Add(b);
+                            const int STATUS_X = 600;
+                            WriteStatus(unit, STATUS_X);
                         }
 
                     }
@@ -94,8 +98,29 @@ namespace DiceBattle.Presenters
                 }
             }
 
-            _updater.CreateViewModel = viewModel;
+            _updater.CreateViewModel = _viewModel;
             
         }
+
+
+
+        private void WriteStatus(Unit unit, int x)
+        {
+            const int NAME_Y = 300;
+            const int HP_Y = 330;
+            const int MARGIN = 30;
+            const int FIRST_ATTACK_Y = 360;
+
+            int y;
+            _viewModel.texts.Add(new Text($"{unit.Name}", x, NAME_Y, Constants.Color.WHITE));
+            _viewModel.texts.Add(new Text($"HP : {unit.Hp}", x, HP_Y, Constants.Color.WHITE));
+
+            for (int i = 0; i < unit.Attacks.Count(); i++)
+            {
+                y = FIRST_ATTACK_Y + MARGIN * i;
+                _viewModel.texts.Add(new Text($"{i + 1} : {unit.Attacks[i].Name}", x, y, Constants.Color.WHITE));
+            }
+        }
+
     }
 }
