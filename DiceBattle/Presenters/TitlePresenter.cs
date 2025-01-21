@@ -43,12 +43,26 @@ namespace DiceBattle.Presenters
                 int y = Constants.Title.FIRST_MENU_Y + Constants.Title.MENU_MARGIN * count;
                 if (count == menu.CurrentIndex + 1)
                 {
+                    int fontSize = 18;
                     x = Constants.Title.MENU_ARROW_X;
-                    viewModel.texts.Add(new Text(Constants.Title.ARROW, x, y, Constants.Color.WHITE));
-                }
 
-                x = Constants.Title.MENU_X;
-                viewModel.texts.Add(new Text(menuText, x, y, Constants.Color.WHITE));
+                    if (menu.IsLargerArrow)
+                    {
+                        fontSize = 24;
+                        x -= 3;
+                        y -= 3;
+                    }
+
+                    viewModel.texts.Add(new Text(Constants.Title.ARROW, x, y, Constants.Color.WHITE, fontSize));
+                    x = Constants.Title.MENU_X;
+                    viewModel.texts.Add(new Text(menuText, x, y, Constants.Color.WHITE, fontSize));
+
+                }
+                else
+                {
+                    x = Constants.Title.MENU_X;
+                    viewModel.texts.Add(new Text(menuText, x, y, Constants.Color.WHITE));
+                }
 
                 count += 1;
             }

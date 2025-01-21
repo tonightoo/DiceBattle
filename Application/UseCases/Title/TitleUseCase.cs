@@ -15,6 +15,8 @@ namespace Application.UseCases.Title
 
         private ITitlePresenter _presenter;
 
+        private int _frameCounter;
+
         public TitleUseCase(ITitlePresenter presenter) 
         {
             List<string> menu = new List<string>();
@@ -22,6 +24,7 @@ namespace Application.UseCases.Title
             menu.Add(Constants.Menu.SECOND_MENU);
             Menu = new TitleMenu(menu);
             _presenter = presenter;
+            _frameCounter = 0;
         }   
 
         public void Next()
@@ -42,6 +45,19 @@ namespace Application.UseCases.Title
 
         public void ScreenUpdate()
         {
+            _frameCounter++;
+            if (_frameCounter <= 60)
+            {
+                Menu.IsLargerArrow = true;
+            }
+            else if (_frameCounter <= 120)
+            {
+                Menu.IsLargerArrow = false;
+            }
+            else
+            {
+                _frameCounter = 0;
+            }
             _presenter.UpdateScreen(this.Menu);
         }
 

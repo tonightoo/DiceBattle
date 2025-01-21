@@ -22,6 +22,8 @@ namespace Domain.DataObjects
 
         public bool IsSelected;
 
+        public bool IsLargerSquare;
+
         public int XNum;
 
         public int YNum;
@@ -61,6 +63,7 @@ namespace Domain.DataObjects
             YNum= yNum;
             IsExit = false;
             IsSelected = false;  
+            IsLargerSquare = false;
         }
 
         public UnitSelection Initialize()

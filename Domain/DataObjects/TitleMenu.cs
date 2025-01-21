@@ -14,6 +14,8 @@ namespace Domain.DataObjects
 
         private int _currentIndex = 0;
 
+        public bool IsLargerArrow;
+
         public int CurrentIndex
         {
             get
@@ -27,6 +29,7 @@ namespace Domain.DataObjects
         {
             Menu = menu;
             _currentIndex = currentIndex;
+            IsLargerArrow = true;
         }
 
         public int Previous()
