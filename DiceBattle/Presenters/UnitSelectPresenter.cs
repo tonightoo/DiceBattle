@@ -86,8 +86,17 @@ namespace DiceBattle.Presenters
                             unitSelection.CurrentSelection.X == j &&
                             unitSelection.CurrentSelection.Y == i)
                         {
-                            Box b = new Box(x, y, x + WIDTH, y + HEIGHT, Constants.Color.RED, 0);
-                            _viewModel.boxes.Add(b);
+                            
+                            if (unitSelection.IsLargerSquare)
+                            {
+                                Box b = new Box(x - 2, y - 2, x + WIDTH + 2, y + HEIGHT + 2, Constants.Color.RED, 0);
+                                _viewModel.boxes.Add(b);
+                            }
+                            else
+                            {
+                                Box b = new Box(x, y, x + WIDTH, y + HEIGHT, Constants.Color.RED, 0);
+                                _viewModel.boxes.Add(b);
+                            }
                             const int STATUS_X = 600;
                             WriteStatus(unit, STATUS_X);
                         }

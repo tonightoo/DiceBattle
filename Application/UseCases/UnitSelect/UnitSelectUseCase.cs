@@ -20,11 +20,14 @@ namespace Application.UseCases.UnitSelect
 
         public UnitSelection _unitSelection;
 
+        private int _frameCounter;
+
         public UnitSelectUseCase(IUnitRepository repository, IUnitSelectPresenter presenter, UnitSelection unitSelection) 
         {
             _unitRepository = repository;
             _presenter = presenter;
             _unitSelection = unitSelection;
+            _frameCounter = 0;
             PrivateInitialize();
         }
 
@@ -97,6 +100,20 @@ namespace Application.UseCases.UnitSelect
 
         public void ScreenUpdate()
         {
+            _frameCounter++;
+            if (_frameCounter <= 60)
+            {
+                _unitSelection.IsLargerSquare = false;
+            }
+            else if (_frameCounter <= 120)
+            {
+                _unitSelection.IsLargerSquare = true;
+            }
+            else
+            {
+                _frameCounter = 0;
+            }
+
             _presenter.UpdateScreen(_unitSelection);
         }
 
